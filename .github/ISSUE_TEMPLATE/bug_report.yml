@@ -1,0 +1,106 @@
+name: Bug report
+description: Something in HamBench or a related repo behaved unexpectedly.
+title: "[Bug]: "
+labels: ["status: needs triage"]
+type: Bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. An automated agent will try to reproduce it from this form, so the steps need to be specific enough to follow without guessing.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you saw, including the exact error text or UI state.
+      placeholder: Write memory failed at 42% with "timeout waiting for ack".
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What was expected?
+      description: What you expected HamBench, the driver, or the radio to do instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered steps another person or an automated agent can follow. Name the screen or menu, the control you used, and the exact values.
+      placeholder: |
+        1. Radio and cable: Baofeng UV-5R on /dev/ttyUSB0 (CH340 programming cable)
+        2. Open HamBench → Radio → Read
+        3. Select the UV-5R module and click Read
+        4. See error: ...
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: HamBench version
+      description: From Help → About, the installer name, or the commit SHA for a dev build.
+      placeholder: 0.4.2
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS and architecture
+      description: Operating system version and CPU architecture.
+      placeholder: macOS 15 arm64 (Apple Silicon), Windows 11 x64, or Linux x64
+    validations:
+      required: true
+  - type: input
+    id: radio
+    attributes:
+      label: Radio make and model
+      description: The radio involved. Use N/A when the bug is not radio-specific.
+      placeholder: Baofeng UV-5R, Kenwood TH-F6, TH-D74, or TM-D710A
+    validations:
+      required: true
+  - type: input
+    id: connection
+    attributes:
+      label: Connection or cable
+      description: Programming cable, chipset, and serial port, when a radio connection is involved.
+      placeholder: CH340 programming cable on /dev/ttyUSB0
+    validations:
+      required: false
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Closest part of the project, if you know it. This is written into the issue body and does not add an area label.
+      options:
+        - ui
+        - driver
+        - modules
+        - cat
+        - channel library
+        - log
+        - sniffer
+        - api
+        - registry
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Paste relevant HamBench, driver, or sniffer log output. Leave this blank if you are attaching files instead.
+      render: text
+    validations:
+      required: false
+  - type: upload
+    id: attachments
+    attributes:
+      label: Logs or screenshots
+      description: Screenshots, log files, or a sniffer capture that show the failure.
+    validations:
+      required: false
+      accept: ".png,.jpg,.jpeg,.gif,.webp,.log,.txt,.json,.csv,.zip"

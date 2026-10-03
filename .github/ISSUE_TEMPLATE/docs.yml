@@ -1,0 +1,49 @@
+name: Docs issue
+description: Report documentation that is wrong, outdated, or missing.
+title: "[Docs]: "
+labels: ["status: needs triage"]
+type: Docs
+body:
+  - type: markdown
+    attributes:
+      value: |
+        User and developer docs live at https://springfield-ham-radio.github.io/ham-radio-docs/. Include a link to the page when one exists.
+  - type: input
+    id: page
+    attributes:
+      label: Page or link
+      description: The doc page, heading, or repo file that is wrong or missing.
+      placeholder: https://springfield-ham-radio.github.io/ham-radio-docs/guide/sniffer.html
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's wrong or missing?
+      description: Quote the incorrect text, or describe the topic that should be documented.
+    validations:
+      required: true
+  - type: textarea
+    id: suggested-fix
+    attributes:
+      label: Suggested fix
+      description: Replacement wording, a new section outline, or the correct command. Write "None" if you only know the problem.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Closest part of the project, if you know it. This is written into the issue body and does not add an area label.
+      options:
+        - ui
+        - driver
+        - modules
+        - cat
+        - channel library
+        - log
+        - sniffer
+        - api
+        - registry
+    validations:
+      required: false

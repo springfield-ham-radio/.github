@@ -1,0 +1,49 @@
+name: Enhancement
+description: Improve something HamBench or a related repo already does.
+title: "[Enhancement]: "
+labels: ["status: needs triage"]
+type: Enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this to improve an existing feature. For new functionality, use the Feature request form.
+  - type: input
+    id: existing-feature
+    attributes:
+      label: Existing feature
+      description: The feature, screen, command, or module this change would improve.
+      placeholder: Channel library CSV import, CAT control, or the UV-5R module
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: What to improve
+      description: The change you want, as specifically as you can.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: Why the current behavior is a problem, and who it helps.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Closest part of the project, if you know it. This is written into the issue body and does not add an area label.
+      options:
+        - ui
+        - driver
+        - modules
+        - cat
+        - channel library
+        - log
+        - sniffer
+        - api
+        - registry
+    validations:
+      required: false
