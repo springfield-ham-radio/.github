@@ -1,0 +1,43 @@
+name: auto-fix
+
+# Reusable workflow: called from each repo's auto-fix.yml when an issue
+# gets the `auto-fix` label. Pings Ham Radio Bot's "Auto-fix labeled issues"
+# routine, which starts a cloud agent that reproduces/implements the issue
+# and opens a draft PR.
+on:
+  workflow_call:
+    secrets:
+      AUTO_FIX_WEBHOOK_URL:
+        required: true
+      AUTO_FIX_WEBHOOK_KEY:
+        required: true
+
+permissions: {}
+
+jobs:
+  notify:
+    if: github.event.label.name == 'auto-fix' && github.event.issue.state == 'open' && github.event.issue.pull_request == null
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify the auto-fix routine
+        env:
+          WEBHOOK_URL: ${{ secrets.AUTO_FIX_WEBHOOK_URL }}
+          WEBHOOK_KEY: ${{ secrets.AUTO_FIX_WEBHOOK_KEY }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          LABEL: ${{ github.event.label.name }}
+          SENDER: ${{ github.event.sender.login }}
+        run: |
+          payload=$(jq -n \
+            --arg repo "$GITHUB_REPOSITORY" \
+            --arg number "$ISSUE_NUMBER" \
+            --arg title "$ISSUE_TITLE" \
+            --arg url "$ISSUE_URL" \
+            --arg label "$LABEL" \
+            --arg sender "$SENDER" \
+            '{event: "issue-labeled", repo: $repo, issue: ($number | tonumber), title: $title, url: $url, label: $label, labeled_by: $sender}')
+          curl --fail-with-body -sS -X POST "$WEBHOOK_URL" \
+            -H "Authorization: Bearer $WEBHOOK_KEY" \
+            -H "Content-Type: application/json" \
+            --data "$payload"
