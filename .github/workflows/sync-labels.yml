@@ -1,0 +1,50 @@
+name: sync-labels
+
+# Apply labels.yml to every non-archived repository in the organization.
+# Creates missing labels and updates color and description. Never deletes
+# labels that are not listed in the file.
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - labels.yml
+      - scripts/sync-labels.py
+      - .github/workflows/sync-labels.yml
+  schedule:
+    - cron: "0 12 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Preview creates and updates without changing labels
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-labels
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Require LABEL_SYNC_TOKEN
+        env:
+          LABEL_SYNC_TOKEN: ${{ secrets.LABEL_SYNC_TOKEN }}
+        run: |
+          if [ -z "$LABEL_SYNC_TOKEN" ]; then
+            echo "::error::LABEL_SYNC_TOKEN is missing. Create an organization fine-grained personal access token for springfield-ham-radio (repository access: All repositories; permissions: Issues read and write, Metadata read) and save it as an organization secret or a secret on this repository named LABEL_SYNC_TOKEN. See the Label sync section of the README."
+            exit 1
+          fi
+
+      - name: Sync labels
+        env:
+          LABEL_SYNC_TOKEN: ${{ secrets.LABEL_SYNC_TOKEN }}
+          LABEL_SYNC_ORG: springfield-ham-radio
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: python3 scripts/sync-labels.py labels.yml
