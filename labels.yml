@@ -1,0 +1,87 @@
+# Org-wide issue labels for springfield-ham-radio.
+# Source of truth for .github/workflows/sync-labels.yml.
+# The sync creates missing labels and updates color and description.
+# It never deletes labels that are absent from this file.
+#
+# Names used by issue forms and the auto-fix workflow must stay exact:
+#   status: needs triage
+#   auto-fix
+# Issue types (Bug, Feature, Enhancement, Docs) are GitHub Issue Types, not labels.
+
+# priority
+- name: "priority: critical"
+  color: "b60205"
+  description: "Breaks radios or loses data; fix now"
+- name: "priority: high"
+  color: "d93f0b"
+  description: "Important; fix soon"
+- name: "priority: medium"
+  color: "fbca04"
+  description: "Normal priority"
+- name: "priority: low"
+  color: "fef2c0"
+  description: "Nice to have"
+
+# status
+- name: "status: needs triage"
+  color: "f9e79f"
+  description: "New; not reviewed yet"
+- name: "status: needs info"
+  color: "f7dc6f"
+  description: "Waiting on the reporter"
+- name: "status: confirmed"
+  color: "f4d03f"
+  description: "Reproduced"
+- name: "status: blocked"
+  color: "f1c40f"
+  description: "Waiting on another issue or something outside the project"
+- name: "status: in progress"
+  color: "d4ac0d"
+  description: "Someone is working on it"
+
+# area
+- name: "area: ui"
+  color: "0e8a16"
+  description: "Desktop app UI"
+- name: "area: driver"
+  color: "0e8a16"
+  description: "Radio drivers and protocol editor"
+- name: "area: modules"
+  color: "0e8a16"
+  description: "Radio protocol modules"
+- name: "area: cat"
+  color: "0e8a16"
+  description: "CAT radio control"
+- name: "area: channel library"
+  color: "0e8a16"
+  description: "Channel library and imports"
+- name: "area: log"
+  color: "0e8a16"
+  description: "Station log and map"
+- name: "area: sniffer"
+  color: "0e8a16"
+  description: "Serial sniffer"
+- name: "area: api"
+  color: "0e8a16"
+  description: "ham-radio-api"
+- name: "area: registry"
+  color: "0e8a16"
+  description: "Module registry"
+
+# radio
+- name: "radio: baofeng"
+  color: "5319e7"
+  description: "Baofeng radios"
+- name: "radio: kenwood"
+  color: "5319e7"
+  description: "Kenwood radios"
+
+# resolution
+- name: "cannot reproduce"
+  color: "cfd3d7"
+  description: "Could not reproduce the problem"
+
+# automation
+- name: "auto-fix"
+  color: "1d76db"
+  description: "Triggers the automated reproduce-and-fix routine"
