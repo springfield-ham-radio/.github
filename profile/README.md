@@ -26,9 +26,9 @@ HamBench does not bundle every radio. On first launch (or anytime under **Prefer
 | Manufacturer | Radios | Memory | Live CAT |
 | --- | --- | --- | --- |
 | Baofeng | UV-5R family (one config covers UV-5RE Plus; not CHIRP’s BF-F8HP or UV-K5 variants) | Clone | No |
-| Kenwood | TH-F6 | Live CAT memories | Yes |
+| Kenwood | TH-F6 | Clone | Yes |
 | Kenwood | TH-D74 | Clone | Yes (same PC port) |
-| Kenwood | TM-D710A | Clone (body PC port) | Yes |
+| Kenwood | TM-D710A | Clone | Yes |
 
 ## Radio support without writing code
 
