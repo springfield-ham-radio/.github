@@ -1,6 +1,6 @@
 # Springfield Ham Radio
 
-**HamBench** is Bryan Hunt’s desktop app for amateur-radio memory and live computer control (CAT). Read and write radio memory, edit channels, keep a portable channel library, log contacts, and debug clone-protocol traffic when you need to. The app ships a generic serial driver; you add only the radios you own as installable JSON modules.
+**HamBench** is a desktop app developed by KF5UFJ for amateur-radio memory and live computer control (CAT). Read and write radio memory, edit channels, keep a portable channel library, log contacts, and debug clone-protocol traffic when you need to. The app ships a generic serial driver; you add only the radios you own as installable JSON modules.
 
 ## Downloads and feedback
 
@@ -19,7 +19,7 @@ Docs: [User guide](https://springfield-ham-radio.github.io/ham-radio-docs/guide/
 - **Propagation** — NOAA solar indices and a local HF band-opening estimate (a WWV-style aide, not a VOACAP forecast).
 - **Sniffer** — Inspect clone-protocol serial traffic between your computer and the radio (**Radio → Sniffer**), backed by the standalone [ham-radio-sniffer](https://github.com/springfield-ham-radio/ham-radio-sniffer) bridge.
 - **Reference** — Offline ITU phonetics, Q signals, a U.S. amateur band chart, and Morse listening practice. It does not key or transmit on a radio.
-- **APRS and packet** — On a Kenwood TM-D710A, the control-head **COM** jack supports a passive monitor of menu 604 traffic, host KISS messaging (with the module’s enter and exit steps), and a **Packet** tab that shares the same host session. On a TH-D74, turn KISS on at the radio and use **Connect (Host)** on the programming USB port; there is no separate APRS serial jack and no monitor-only mode for that path.
+- **APRS and packet** — On radios whose module supports it, open a KISS TNC session to list and map heard APRS stations, send and receive APRS messages with acknowledgements, and work AX.25 on a packet terminal (call other stations when you choose). A passive monitor mode can watch decoded traffic without writing to the radio; outbound APRS and packet sends stay opt-in.
 
 HamBench does not bundle every radio. On first launch (or anytime under **Preferences → Drivers**), install official modules from the [catalog](https://springfield-ham-radio.github.io/radio-module-catalog/catalog.json) on GitHub Pages. Each module is a JSON zip from that radio’s GitHub Release.
 
